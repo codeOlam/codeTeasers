@@ -23,73 +23,55 @@ def takeInt():
 	
 	try:
 		#Take all integer inputs
-		x = int(input('[-] Enter First integer: '))
-		y = int(input('[-] Enter Second integer: '))
-		z = int(input('[-] Enter Third integer: '))
+		x = int(input('[*] Enter First integer: '))
+		y = int(input('[*] Enter Second integer: '))
+		z = float(input('[*] Enter Third integer: '))
 	except ValueError:
 		#if value entered by user is not integer, reprompt user
 		print('[!] Please Make sure values entered are integer\n')
 
-		x = int(input('[-] Enter First integer: '))
-		y = int(input('[-] Enter Second integer: '))
-		z = int(input('[-] Enter Third integer: '))
-
-	finally:
+		x = int(input('[*] Enter First integer: '))
+		y = int(input('[*] Enter Second integer: '))
+		z = float(input('[*] Enter Third integer: '))
+	except ValueError:
 		#Exit program
 		print ('[x] value entered wrong!')
-		sys.exit("Program exiting...")
+		sys.exit("[*] Program exiting...")
 
 	return x, y, z
 
-def checkOp(x, y, z):
+def checkOp():
 	#This function will check the operations on the three integers
-	pass
+
+	x, y, z = takeInt()
+
+	switcher = {
+		'+':x + y == z,
+		'-':x - y == z,
+		'*':x * y == z,
+		'/':x / y == z,
+		'%':x % y == z,
+		'^':x ^ y == z,
+		'&':x & y == z,
+		'|':x | y == z,
+		'<<':x << y == z,
+		'>>':x >> y == z,
+	}
+
+	operators_dict = dict()
+
+	#get operations by dictionary comprehension
+	operators_dict = {key:value for (key, value) in switcher.items() if value == True}
+
+	print('\n[+] The Operations on the integers {}, {} and {} are: '.format(x, y, z))
+	for i in operators_dict.keys():
+		print(i)
+
+	if operators_dict == {}:
+		print('[-] None!')
 
 def main():
-	# initialize a list to hold all operators
-	op = []
-
-	#Take input
-	x = int(input('Enter first integer:\t '))
-	y = int(input('Enter second integer:\t '))
-	z = int(input('Enter Third integer:\t '))
-
-	#check the operation
-	if x + y == z:
-		print('[+] {} is an operator '.format('+'))
-		op.append('+')
-	elif x - y == z:
-		print('[+] {} is an operator '.format('-'))
-		op.append('-')
-	elif x * y == z:
-		print('[+] {} is an operator '.format('*'))
-		op.append('*')
-	elif x / y == z:
-		print('[+] {} is an operator '.format('/'))
-		op.append('/')
-	elif x % y == z:
-		print('[+] {} is an operator '.format('%'))
-		op.append('%')
-	elif x ^ y == z:
-		print('[+] {} is an operator '.format('^'))
-		op.append('^')
-	elif x & y == z:
-		print('[+] {} is an operator '.format('&'))
-		op.append('&')
-	elif x | y == z:
-		print('[+] {} is an operator '.format('|'))
-		op.append('|')
-	elif x << y == z:
-		print('[+] {} is an operator '.format('<<'))
-		op.append('<<')
-	elif x >> y == z:
-		print('[+] {} is an operator '.format('>>'))
-		op.append('>>')
-	else:
-		print('[x] No Operation found for the integers')
-		op.append('None')
-
-	print("[+] The operator for the integers {}, {}, and {} are {}".format(x, y, z, op))
+	checkOp()
 
 
 
