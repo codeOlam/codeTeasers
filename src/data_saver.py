@@ -11,10 +11,16 @@
 def textInput():
 	"""
 		This function takes in input from user
+		and save all text input in a list
+		then returns the list
 	"""
 	#get text input from user
-	text = input('[*] Enter text input: ')
-	return text
+	text = ''
+	text_list = []
+	while text != "\q":
+		text = input('[*] Enter text input or "\q" to quit: ')
+		text_list.extend(text)
+	return text_list[:-2]
 
 
 def sliptText(text):
