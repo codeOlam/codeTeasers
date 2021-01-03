@@ -8,36 +8,60 @@
 	with the letter removed.
 """
 
-def main():
-
+def textInput():
+	"""
+		This function takes in input from user
+	"""
 	#get text input from user
-	text = input('Enter text input: ')
-	print ('The text entered is: \n', text)
+	text = input('[*] Enter text input: ')
+	return text
 
-	#split letters in the text and save in a list
-	split_text = [char for char in text]
-	print(split_text)
 
-	#create a new dict
+def sliptText(text):
+	"""
+		This function will split text input into 
+		individual char and save in a list
+	"""
+	return [char for char in text]
+
+def countChar(txt, split_txt):
+	"""
+		This function counts the char with the highest 
+		frequency and returns a dictionary
+	"""
 	char_dict = dict()
 
-	#count each letter
-	for i in split_text:
-		char_count = text.count(i)
-		print('The number of letter {} is \t :{}'.format(i, char_count))
-
+	for i in split_txt:
+		char_count = txt.count(i)
 		char_dict.update({i:char_count})
-	
-	print(char_dict)
 
-	print('\nTo get the most frequent letter')
+	return char_dict
 
+def detChar(char_dic):
+	"""
+		This function will determine the keys and values 
+		of the char dict for the highest frequency
+	"""
 	#get the key
-	max_char_key = max(char_dict, key=char_dict.get)
+	max_char_key = max(char_dic, key=char_dic.get)
 	#get the value
-	max_char_val = max(char_dict.values())
+	max_char_val = max(char_dic.values())
 
-	print('Maximum char is {} with frequency of {}'.format(max_char_key, max_char_val))
+	return (max_char_key, max_char_val)
+
+def main():
+
+	text = textInput()
+	print ('[*] The text entered is: \n', text)
+
+	#split letters in the text and save in a list
+	split_text = sliptText(text)
+
+	charDict = countChar(text, split_text)
+
+	max_charKey, max_charVal = detChar(charDict)
+
+	print('\n[+] Maximum char is {} with frequency of {}'.format(max_charKey, max_charVal ))
 
 
 
